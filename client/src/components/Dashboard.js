@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import Sidebar from './sidebar';
-import { connect } from 'react-redux';
-import { verifyLogin } from '../actions/authActions';
 
 class Dashboard extends Component {
 
-  componentDidMount() {
-    this.props.verifyLogin()
-  }
-
   render() {
     return (
+      <div className="app">
+      <p>sup</p>
       <Sidebar />
+      </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return({
-    verifyLogin: () => {dispatch(verifyLogin)}
-  })
-}
-export default connect(null, mapDispatchToProps)(Dashboard)
+export default Dashboard;

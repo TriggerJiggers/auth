@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
 const CLIENT_HOME_PAGE_URL = "http://localhost:3000/";
-const CLIENT_DASHBOARD_PAGE_URL = "http://localhost:3000/dashboard";
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
@@ -37,7 +36,7 @@ router.get('/google', passport.authenticate('google', {
 router.get(
   "/google/redirect",
   passport.authenticate("google", {
-    successRedirect: CLIENT_DASHBOARD_PAGE_URL,
+    successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "/auth/login/failed"
   })
 );

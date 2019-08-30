@@ -1,8 +1,8 @@
 import { GET_ERRORS, SET_CURRENT_USER, LOGGING_IN, LOGOUT_USER } from "./types";
+import history from '../history'
 
 // Login - get user token
 export const verifyLogin = () => dispatch => {
-  console.log('verify login')
   fetch("http://localhost:4000/auth/login/success", {
     method: "GET",
     credentials: "include",
@@ -20,11 +20,9 @@ export const verifyLogin = () => dispatch => {
     })
   })
   .then(responseJson => {
-    console.log(responseJson)
     dispatch(setCurrentUser(responseJson.user))
   })
   .catch(error => {
-    console.log(`general error ${error}`)
     dispatch({
       type: GET_ERRORS,
       payload: error
@@ -40,7 +38,7 @@ export const loggingIn = () => {
 
 // Set logged in user
 export const setCurrentUser = user => {
-  console.log('setCurrentUser')
+  history.push('/dashboard')
   return {
     type: SET_CURRENT_USER,
     payload: user
@@ -49,7 +47,7 @@ export const setCurrentUser = user => {
 
 // logout
 export const logoutUser = user => {
-  console.log('logging out user')
+  window.open("http://localhost:4000/auth/logout", "_self");
   return {
     type: LOGOUT_USER
   };
