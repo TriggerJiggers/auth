@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Sidebar from './sidebar';
 import { connect } from 'react-redux';
@@ -7,7 +6,7 @@ import { verifyLogin } from '../actions/authActions';
 class Dashboard extends Component {
 
   componentDidMount() {
-    this.props.dispatch(verifyLogin());
+    this.props.verifyLogin()
   }
 
   render() {
@@ -17,8 +16,9 @@ class Dashboard extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  verifyLogin,
+function mapDispatchToProps(dispatch) {
+  return({
+    verifyLogin: () => {dispatch(verifyLogin)}
+  })
 }
-
 export default connect(null, mapDispatchToProps)(Dashboard)
